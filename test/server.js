@@ -46,23 +46,29 @@ http
 			console.log("Unauthorized");
 			response.writeHead(401);
 			response.end();
-		} 
+		}
 		if (request.url === "/Bonus/Redirect") {
 			console.log("Redirect");
-			response.writeHead(302, {'Location': 'http://localhost:3000/Forbidden'});
+			response.writeHead(302, { Location: "http://localhost:3000/Forbidden" });
 			response.end();
 		}
 		if (request.url === "/Bonus/Webpage") {
 			console.log("Webpage");
-			response.writeHead(404);
+			response.writeHead(200, { "Content-Type": "text/html" });
+			response.write("html<h1>HELLO</h1>");
 			response.end();
 		}
 		if (request.url === "/Bonus/Created") {
-			console.log("");
-			response.writeHead();
-			response.end();
-		}
-    else {
+			if (response.method === "POST") {
+				console.log("Created");
+				response.writeHead(201);
+				response.end();
+			} else {
+				console.log("GET, PUT, PATCH, or DELETE not allowed.)");
+				response.writeHead(404);
+				response.end();
+			}
+		} else {
 			console.log("404");
 			response.writeHead(404);
 			response.end();
