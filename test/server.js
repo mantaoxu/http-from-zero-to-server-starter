@@ -46,27 +46,28 @@ http
 			console.log("Unauthorized");
 			response.writeHead(401);
 			response.end();
-		} else {
+		} 
+		if (request.url === "/Bonus/Redirect") {
+			console.log("Redirect");
+			response.writeHead(302, {'Location': 'http://localhost:3000/Forbidden'});
+			response.end();
+		}
+		if (request.url === "/Bonus/Webpage") {
+			console.log("Webpage");
+			response.writeHead(404);
+			response.end();
+		}
+		if (request.url === "/Bonus/Created") {
+			console.log("");
+			response.writeHead();
+			response.end();
+		}
+    else {
 			console.log("404");
 			response.writeHead(404);
 			response.end();
 		}
-		if (request.url === "/Bonus/Redirect") {
-			console.log("");
-			response.writeHead();
-			response.end();
-		}
-		if (request.url === "") {
-			console.log("");
-			response.writeHead();
-			response.end();
-		}
-		if (request.url === "") {
-			console.log("");
-			response.writeHead();
-			response.end();
-		}
 	})
 	.listen(3000, function () {
-		console.log("listening on port 3000");
+		console.log("listening on port 3000...");
 	});
